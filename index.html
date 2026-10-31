@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ULTRA-MECH | Heavy Metal. Big Ideas.</title>
+<meta name="description" content="Ultra-Mech Industries builds the biggest, boldest mechs on the planet.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --steel-900: #0d1014;
+    --steel-800: #161b21;
+    --steel-700: #222a33;
+    --steel-500: #4a5664;
+    --steel-300: #9aa7b5;
+    --text: #e8edf2;
+    --hazard: #ffb000;
+    --hot: #ff4d1a;
+    --glow: #33e1ff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--steel-900);
+    background-image:
+      linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size: 40px 40px;
+    color: var(--text);
+    font-family: "Rajdhani", system-ui, sans-serif;
+    font-size: 18px;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, .logo { font-family: "Black Ops One", Impact, sans-serif; font-weight: 400; letter-spacing: .04em; }
+  a { color: inherit; }
+
+  .hazard-strip {
+    height: 14px;
+    background: repeating-linear-gradient(-45deg, var(--hazard) 0 18px, #111 18px 36px);
+  }
+
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px clamp(16px, 4vw, 48px);
+    background: var(--steel-800);
+    border-bottom: 2px solid var(--steel-700);
+    position: sticky; top: 0; z-index: 10;
+  }
+  .logo { font-size: 1.6rem; color: var(--hazard); text-decoration: none; }
+  .logo span { color: var(--text); }
+  nav ul { display: flex; gap: clamp(12px, 3vw, 32px); list-style: none; }
+  nav ul a { text-decoration: none; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; font-size: .9rem; color: var(--steel-300); }
+  nav ul a:hover { color: var(--hazard); }
+
+  .hero {
+    display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: 32px;
+    padding: clamp(40px, 8vw, 96px) clamp(16px, 4vw, 48px);
+    max-width: 1200px; margin: 0 auto;
+  }
+  .tag {
+    display: inline-block; padding: 4px 12px; margin-bottom: 18px;
+    border: 1px solid var(--glow); color: var(--glow);
+    font-weight: 700; letter-spacing: .2em; font-size: .8rem; text-transform: uppercase;
+  }
+  .hero h1 { font-size: clamp(3rem, 9vw, 6.5rem); line-height: .95; }
+  .hero h1 em { font-style: normal; color: var(--hazard); display: block; }
+  .hero p { margin: 22px 0 30px; color: var(--steel-300); font-size: 1.2rem; max-width: 34ch; }
+  .btn {
+    display: inline-block; padding: 14px 28px; text-decoration: none;
+    background: var(--hazard); color: #111; font-weight: 700; text-transform: uppercase; letter-spacing: .12em;
+    clip-path: polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%);
+    transition: transform .15s, background .15s;
+  }
+  .btn:hover { background: var(--hot); transform: translateY(-2px); }
+
+  .mech-art { width: 100%; max-width: 440px; justify-self: center; filter: drop-shadow(0 20px 40px rgba(0,0,0,.6)); }
+  .mech-art .eye { animation: blink 4s infinite; }
+  .mech-art .bob { animation: bob 3s ease-in-out infinite; transform-origin: center; }
+  @keyframes blink { 0%, 92%, 100% { opacity: 1; } 95% { opacity: .2; } }
+  @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+
+  section { padding: clamp(48px, 8vw, 88px) clamp(16px, 4vw, 48px); }
+  .wrap { max-width: 1200px; margin: 0 auto; }
+  .section-title { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 8px; }
+  .section-sub { color: var(--steel-300); margin-bottom: 36px; }
+
+  .lineup { background: var(--steel-800); border-top: 2px solid var(--steel-700); border-bottom: 2px solid var(--steel-700); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 22px; }
+  .card {
+    background: var(--steel-700); padding: 24px; position: relative;
+    border-left: 4px solid var(--accent, var(--hazard));
+    clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 0 100%);
+    transition: transform .2s;
+  }
+  .card:hover { transform: translateY(-4px); }
+  .card .model { color: var(--accent, var(--hazard)); font-weight: 700; letter-spacing: .2em; font-size: .8rem; }
+  .card h3 { font-size: 1.7rem; margin: 4px 0 10px; }
+  .card p { color: var(--steel-300); margin-bottom: 18px; }
+  .stat { display: grid; grid-template-columns: 70px 1fr; align-items: center; gap: 10px; font-size: .8rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-top: 6px; }
+  .bar { height: 8px; background: var(--steel-900); }
+  .bar i { display: block; height: 100%; background: var(--accent, var(--hazard)); }
+
+  .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 22px; }
+  .fact { border: 1px solid var(--steel-500); padding: 22px; }
+  .fact b { display: block; font-family: "Black Ops One", Impact, sans-serif; font-weight: 400; font-size: 2.4rem; color: var(--hazard); }
+  .fact span { color: var(--steel-300); }
+
+  .contact { text-align: center; }
+  .contact p { color: var(--steel-300); margin: 0 auto 28px; max-width: 46ch; }
+
+  footer { text-align: center; padding: 28px 16px; color: var(--steel-500); font-size: .9rem; }
+
+  @media (max-width: 760px) {
+    .hero { grid-template-columns: 1fr; text-align: center; }
+    .hero p { margin-left: auto; margin-right: auto; }
+    .mech-art { max-width: 300px; order: -1; }
+    nav ul { display: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="hazard-strip"></div>
+  <nav>
+    <a class="logo" href="#">ULTRA<span>-MECH</span></a>
+    <ul>
+      <li><a href="#lineup">Mechs</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <div class="tag">Ultra-Mech Industries &middot; Est. 2026</div>
+      <h1>Heavy Metal.<em>Big Ideas.</em></h1>
+      <p>We build the biggest, boldest, most ridiculously awesome mechs on the planet. Built tough, built tall, and built ultra.</p>
+      <a class="btn" href="#lineup">See the lineup</a>
+    </div>
+
+    <svg class="mech-art" viewBox="0 0 300 340" aria-label="An Ultra-Mech robot">
+      <g class="bob">
+        <!-- antenna -->
+        <line x1="150" y1="28" x2="150" y2="8" stroke="#9aa7b5" stroke-width="4"/>
+        <circle cx="150" cy="8" r="6" fill="#ff4d1a"/>
+        <!-- head -->
+        <path d="M110 30 h80 l12 22 v28 l-12 14 h-80 l-12 -14 v-28 z" fill="#4a5664" stroke="#0d1014" stroke-width="3"/>
+        <rect class="eye" x="118" y="52" width="64" height="16" rx="3" fill="#33e1ff"/>
+        <!-- shoulders -->
+        <rect x="36" y="100" width="62" height="54" rx="8" fill="#ffb000" stroke="#0d1014" stroke-width="3"/>
+        <rect x="202" y="100" width="62" height="54" rx="8" fill="#ffb000" stroke="#0d1014" stroke-width="3"/>
+        <!-- torso -->
+        <path d="M92 98 h116 l10 30 -14 82 h-108 l-14 -82 z" fill="#222a33" stroke="#0d1014" stroke-width="3"/>
+        <path d="M108 112 h84 l-6 46 h-72 z" fill="#4a5664"/>
+        <circle cx="150" cy="134" r="14" fill="#33e1ff" opacity=".9"/>
+        <circle cx="150" cy="134" r="6" fill="#e8edf2"/>
+        <rect x="112" y="172" width="76" height="10" fill="#ffb000"/>
+        <rect x="112" y="188" width="76" height="6" fill="#4a5664"/>
+        <!-- arms -->
+        <rect x="44" y="154" width="44" height="80" rx="6" fill="#4a5664" stroke="#0d1014" stroke-width="3"/>
+        <rect x="212" y="154" width="44" height="80" rx="6" fill="#4a5664" stroke="#0d1014" stroke-width="3"/>
+        <rect x="38" y="232" width="56" height="30" rx="6" fill="#222a33" stroke="#0d1014" stroke-width="3"/>
+        <rect x="206" y="232" width="56" height="30" rx="6" fill="#222a33" stroke="#0d1014" stroke-width="3"/>
+      </g>
+      <!-- legs -->
+      <rect x="104" y="210" width="38" height="92" fill="#4a5664" stroke="#0d1014" stroke-width="3"/>
+      <rect x="158" y="210" width="38" height="92" fill="#4a5664" stroke="#0d1014" stroke-width="3"/>
+      <rect x="104" y="240" width="38" height="10" fill="#ffb000"/>
+      <rect x="158" y="240" width="38" height="10" fill="#ffb000"/>
+      <path d="M90 300 h62 v26 h-70 z" fill="#222a33" stroke="#0d1014" stroke-width="3"/>
+      <path d="M148 300 h62 l8 26 h-70 z" fill="#222a33" stroke="#0d1014" stroke-width="3"/>
+    </svg>
+  </header>
+
+  <div class="hazard-strip"></div>
+
+  <section class="lineup" id="lineup">
+    <div class="wrap">
+      <h2 class="section-title">The Lineup</h2>
+      <p class="section-sub">Every Ultra-Mech is hand-built, battle-tested and way too big for your garage.</p>
+      <div class="grid">
+        <article class="card" style="--accent: #ffb000;">
+          <div class="model">MODEL UM-1</div>
+          <h3>Titan</h3>
+          <p>Our flagship heavy mech. Slow, unstoppable and taller than a three-story building.</p>
+          <div class="stat">Armor <div class="bar"><i style="width:95%"></i></div></div>
+          <div class="stat">Speed <div class="bar"><i style="width:35%"></i></div></div>
+          <div class="stat">Power <div class="bar"><i style="width:90%"></i></div></div>
+        </article>
+        <article class="card" style="--accent: #33e1ff;">
+          <div class="model">MODEL UM-2</div>
+          <h3>Viper</h3>
+          <p>A lightning-fast scout with jump jets. Blink and you'll miss it.</p>
+          <div class="stat">Armor <div class="bar"><i style="width:40%"></i></div></div>
+          <div class="stat">Speed <div class="bar"><i style="width:98%"></i></div></div>
+          <div class="stat">Power <div class="bar"><i style="width:55%"></i></div></div>
+        </article>
+        <article class="card" style="--accent: #ff4d1a;">
+          <div class="model">MODEL UM-3</div>
+          <h3>Inferno</h3>
+          <p>Rocket boosters, plasma fists and a cockpit with cup holders. The fan favorite.</p>
+          <div class="stat">Armor <div class="bar"><i style="width:70%"></i></div></div>
+          <div class="stat">Speed <div class="bar"><i style="width:65%"></i></div></div>
+          <div class="stat">Power <div class="bar"><i style="width:85%"></i></div></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <h2 class="section-title">About Ultra-Mech</h2>
+      <p class="section-sub">Founded in 2026 by a father-and-son engineering team with one goal: make mechs more ultra.</p>
+      <div class="about-grid">
+        <div class="fact"><b>3</b><span>Mech models in production</span></div>
+        <div class="fact"><b>40 ft</b><span>Tallest mech we've built (so far)</span></div>
+        <div class="fact"><b>100%</b><span>Awesomeness guaranteed</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="hazard-strip"></div>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <h2 class="section-title">Order Your Mech</h2>
+      <p>Our engineers are standing by. Production slots are limited and the waiting list is huge.</p>
+      <a class="btn" href="#">Coming soon</a>
+    </div>
+  </section>
+
+  <footer>&copy; <span id="yr">2026</span> Ultra-Mech Industries. All mechs are fictional. Probably.</footer>
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>

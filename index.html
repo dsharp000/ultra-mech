@@ -3,235 +3,728 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ULTRA-MECH | Heavy Metal. Big Ideas.</title>
-<meta name="description" content="Ultra-Mech Industries builds the biggest, boldest mechs on the planet.">
+<title>UltraMech Industries</title>
+<meta name="description" content="UltraMech Industries builds the UM-34 Gold Crown and the full UltraMech fleet. Crowned for combat.">
+<meta property="og:title" content="UltraMech 34 Gold Crown Edition">
+<meta property="og:description" content="Crowned for combat. Explore the UltraMech fleet.">
+<meta property="og:image" content="https://ultra-mech.com/img/hero-um34.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Chakra+Petch:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
   :root {
-    --steel-900: #0d1014;
-    --steel-800: #161b21;
-    --steel-700: #222a33;
-    --steel-500: #4a5664;
-    --steel-300: #9aa7b5;
-    --text: #e8edf2;
-    --hazard: #ffb000;
-    --hot: #ff4d1a;
-    --glow: #33e1ff;
+    --bg: #0b0d10;
+    --bg-2: #111418;
+    --panel: #15191e;
+    --line: #262c33;
+    --line-gold: #5c4a1e;
+    --text: #eef1f4;
+    --muted: #9aa3ad;
+    --dim: #6b747e;
+    --gold: #e0b14a;
+    --gold-2: #f3cd6d;
+    --blue: #4fc3f7;
+    --red: #ff6a4d;
+    --gutter: clamp(16px, 5vw, 72px);
+    --max: 1320px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
   body {
-    background: var(--steel-900);
-    background-image:
-      linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-    background-size: 40px 40px;
+    background: var(--bg);
     color: var(--text);
-    font-family: "Rajdhani", system-ui, sans-serif;
-    font-size: 18px;
-    line-height: 1.5;
+    font-family: "Barlow", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
-  h1, h2, h3, .logo { font-family: "Black Ops One", Impact, sans-serif; font-weight: 400; letter-spacing: .04em; }
-  a { color: inherit; }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  h1, h2, h3, h4 { font-family: "Chakra Petch", "Barlow", sans-serif; font-weight: 700; line-height: 1.05; letter-spacing: -.01em; }
+  .mono { font-family: "Share Tech Mono", ui-monospace, monospace; letter-spacing: .22em; text-transform: uppercase; font-size: .78rem; }
+  .eyebrow { color: var(--gold); display: block; margin-bottom: 14px; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+  section { padding: clamp(72px, 10vw, 140px) 0; }
 
-  .hazard-strip {
-    height: 14px;
-    background: repeating-linear-gradient(-45deg, var(--hazard) 0 18px, #111 18px 36px);
+  /* ---------- nav ---------- */
+  .nav {
+    position: fixed; inset: 0 0 auto 0; z-index: 50;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    height: 68px; padding: 0 var(--gutter);
+    background: linear-gradient(180deg, rgba(11,13,16,.85), rgba(11,13,16,0));
+    transition: background .3s, border-color .3s;
+    border-bottom: 1px solid transparent;
   }
-
-  nav {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 16px clamp(16px, 4vw, 48px);
-    background: var(--steel-800);
-    border-bottom: 2px solid var(--steel-700);
-    position: sticky; top: 0; z-index: 10;
-  }
-  .logo { font-size: 1.6rem; color: var(--hazard); text-decoration: none; }
-  .logo span { color: var(--text); }
-  nav ul { display: flex; gap: clamp(12px, 3vw, 32px); list-style: none; }
-  nav ul a { text-decoration: none; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; font-size: .9rem; color: var(--steel-300); }
-  nav ul a:hover { color: var(--hazard); }
-
-  .hero {
-    display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: 32px;
-    padding: clamp(40px, 8vw, 96px) clamp(16px, 4vw, 48px);
-    max-width: 1200px; margin: 0 auto;
-  }
-  .tag {
-    display: inline-block; padding: 4px 12px; margin-bottom: 18px;
-    border: 1px solid var(--glow); color: var(--glow);
-    font-weight: 700; letter-spacing: .2em; font-size: .8rem; text-transform: uppercase;
-  }
-  .hero h1 { font-size: clamp(3rem, 9vw, 6.5rem); line-height: .95; }
-  .hero h1 em { font-style: normal; color: var(--hazard); display: block; }
-  .hero p { margin: 22px 0 30px; color: var(--steel-300); font-size: 1.2rem; max-width: 34ch; }
+  .nav.solid { background: rgba(11,13,16,.94); backdrop-filter: blur(10px); border-bottom-color: var(--line); }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand svg { width: 34px; height: 34px; flex: none; }
+  .brand b { font-family: "Chakra Petch", sans-serif; font-weight: 700; font-size: 1.1rem; letter-spacing: .14em; }
+  .brand b span { color: var(--gold); }
+  .nav ul { display: flex; gap: clamp(16px, 2.4vw, 36px); list-style: none; }
+  .nav ul a { font-size: .86rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #cfd5db; transition: color .2s; }
+  .nav ul a:hover { color: var(--gold); }
   .btn {
-    display: inline-block; padding: 14px 28px; text-decoration: none;
-    background: var(--hazard); color: #111; font-weight: 700; text-transform: uppercase; letter-spacing: .12em;
-    clip-path: polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%);
-    transition: transform .15s, background .15s;
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 26px; border: 1px solid var(--gold);
+    font-weight: 600; font-size: .86rem; letter-spacing: .16em; text-transform: uppercase;
+    transition: background .2s, color .2s, border-color .2s;
+    cursor: pointer; font-family: inherit;
   }
-  .btn:hover { background: var(--hot); transform: translateY(-2px); }
+  .btn.solid { background: var(--gold); color: #14100a; }
+  .btn.solid:hover { background: var(--gold-2); border-color: var(--gold-2); }
+  .btn.ghost { color: var(--text); background: transparent; border-color: rgba(255,255,255,.4); }
+  .btn.ghost:hover { border-color: var(--gold); color: var(--gold); }
+  .btn.sm { padding: 10px 18px; font-size: .78rem; }
+  .btn .arr { transition: transform .2s; }
+  .btn:hover .arr { transform: translateX(4px); }
 
-  .mech-art { width: 100%; max-width: 440px; justify-self: center; filter: drop-shadow(0 20px 40px rgba(0,0,0,.6)); }
-  .mech-art .eye { animation: blink 4s infinite; }
-  .mech-art .bob { animation: bob 3s ease-in-out infinite; transform-origin: center; }
-  @keyframes blink { 0%, 92%, 100% { opacity: 1; } 95% { opacity: .2; } }
-  @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-
-  section { padding: clamp(48px, 8vw, 88px) clamp(16px, 4vw, 48px); }
-  .wrap { max-width: 1200px; margin: 0 auto; }
-  .section-title { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 8px; }
-  .section-sub { color: var(--steel-300); margin-bottom: 36px; }
-
-  .lineup { background: var(--steel-800); border-top: 2px solid var(--steel-700); border-bottom: 2px solid var(--steel-700); }
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 22px; }
-  .card {
-    background: var(--steel-700); padding: 24px; position: relative;
-    border-left: 4px solid var(--accent, var(--hazard));
-    clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 0 100%);
-    transition: transform .2s;
+  /* ---------- hero ---------- */
+  .hero { position: relative; min-height: 100svh; display: flex; align-items: flex-end; padding: 0; overflow: hidden; }
+  .hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 62% 30%; transform: scale(1.04); animation: settle 2.4s ease-out forwards; }
+  @keyframes settle { to { transform: scale(1); } }
+  .hero::after {
+    content: ""; position: absolute; inset: 0;
+    background:
+      linear-gradient(90deg, rgba(11,13,16,.97) 0%, rgba(11,13,16,.88) 32%, rgba(11,13,16,.35) 52%, rgba(11,13,16,0) 70%),
+      linear-gradient(0deg, var(--bg) 0%, rgba(11,13,16,0) 35%);
   }
-  .card:hover { transform: translateY(-4px); }
-  .card .model { color: var(--accent, var(--hazard)); font-weight: 700; letter-spacing: .2em; font-size: .8rem; }
-  .card h3 { font-size: 1.7rem; margin: 4px 0 10px; }
-  .card p { color: var(--steel-300); margin-bottom: 18px; }
-  .stat { display: grid; grid-template-columns: 70px 1fr; align-items: center; gap: 10px; font-size: .8rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-top: 6px; }
-  .bar { height: 8px; background: var(--steel-900); }
-  .bar i { display: block; height: 100%; background: var(--accent, var(--hazard)); }
+  .hero .wrap { position: relative; z-index: 1; width: 100%; padding-bottom: clamp(56px, 9vh, 110px); }
+  .hero h1 { font-size: clamp(3.2rem, 9vw, 7.6rem); letter-spacing: -.02em; }
+  .hero h1 em { font-style: normal; color: var(--gold); }
+  .crown { display: block; width: clamp(48px, 6vw, 76px); margin-bottom: 10px; }
+  .edition { font-family: "Chakra Petch", sans-serif; font-weight: 600; letter-spacing: .38em; color: var(--gold); font-size: clamp(.9rem, 1.6vw, 1.2rem); margin: 16px 0 6px; }
+  .hero p.lead { font-size: clamp(1.3rem, 2.4vw, 1.75rem); font-style: italic; font-weight: 500; margin-bottom: 34px; }
+  .hero .ctas { display: flex; flex-wrap: wrap; gap: 14px; }
+  .spec-strip {
+    display: grid; grid-template-columns: repeat(4, auto); justify-content: start; gap: 0;
+    margin-top: clamp(40px, 7vh, 72px); border-top: 1px solid rgba(255,255,255,.14);
+  }
+  .spec-strip div { padding: 18px 40px 0 0; margin-right: 40px; border-right: 1px solid rgba(255,255,255,.12); }
+  .spec-strip div:last-child { border-right: 0; }
+  .spec-strip .mono { color: var(--dim); font-size: .7rem; display: block; margin-bottom: 4px; }
+  .spec-strip b { font-weight: 600; font-size: 1.05rem; }
 
-  .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 22px; }
-  .fact { border: 1px solid var(--steel-500); padding: 22px; }
-  .fact b { display: block; font-family: "Black Ops One", Impact, sans-serif; font-weight: 400; font-size: 2.4rem; color: var(--hazard); }
-  .fact span { color: var(--steel-300); }
+  /* ---------- section heads ---------- */
+  .head { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; margin-bottom: clamp(36px, 5vw, 60px); }
+  .head h2 { font-size: clamp(2.2rem, 5vw, 3.8rem); }
+  .head p { color: var(--muted); max-width: 42ch; }
 
-  .contact { text-align: center; }
-  .contact p { color: var(--steel-300); margin: 0 auto 28px; max-width: 46ch; }
+  /* ---------- model range ---------- */
+  #models { background: var(--bg); }
+  .tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 28px; }
+  .tab {
+    background: none; border: 1px solid var(--line); color: var(--muted);
+    padding: 9px 16px; font: 600 .78rem/1 "Barlow", sans-serif; letter-spacing: .14em; text-transform: uppercase; cursor: pointer;
+  }
+  .tab[aria-pressed="true"], .tab:hover { color: var(--text); border-color: var(--gold); }
+  .range { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; }
+  .model {
+    position: relative; background: var(--panel); border: 1px solid var(--line);
+    display: flex; flex-direction: column; cursor: pointer; text-align: left; color: inherit; font: inherit;
+    transition: border-color .25s, transform .25s, opacity .3s;
+  }
+  .model:hover { border-color: var(--accent); transform: translateY(-4px); }
+  .model.hide { display: none; }
+  .model .pic { aspect-ratio: 1; overflow: hidden; border-bottom: 3px solid var(--accent); }
+  .model .pic img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s; }
+  .model:hover .pic img { transform: scale(1.06); }
+  .model .body { padding: 20px 20px 22px; display: flex; flex-direction: column; flex: 1; }
+  .model .cls { color: var(--accent); font-size: .68rem; }
+  .model .code { color: var(--muted); font-family: "Chakra Petch", sans-serif; font-weight: 600; margin-top: 10px; }
+  .model h3 { font-size: clamp(1.2rem, 1.45vw, 1.7rem); letter-spacing: .02em; text-transform: uppercase; }
+  .model p { color: var(--muted); font-size: .95rem; margin: 10px 0 18px; flex: 1; }
+  .model .more { font-size: .78rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--text); }
+  .model .more span { color: var(--accent); }
+  .flag { position: absolute; top: 12px; left: 12px; z-index: 1; background: var(--gold); color: #14100a; padding: 4px 10px; font-size: .66rem; }
 
-  footer { text-align: center; padding: 28px 16px; color: var(--steel-500); font-size: .9rem; }
+  /* ---------- flagship ---------- */
+  #flagship { background: var(--bg-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .flagship { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 88px); align-items: center; }
+  .flagship .poster { border: 1px solid var(--line-gold); box-shadow: 0 40px 80px rgba(0,0,0,.5); cursor: zoom-in; }
+  .flagship h2 { font-size: clamp(2.4rem, 5vw, 4rem); }
+  .flagship .tagline { font-family: "Chakra Petch", sans-serif; font-weight: 600; font-size: 1.15rem; letter-spacing: .06em; margin: 18px 0; color: var(--muted); }
+  .flagship .tagline b { color: var(--gold); }
+  .flagship > div > p { color: var(--muted); margin-bottom: 36px; }
+  .loadout { display: grid; gap: 26px; }
+  .loadout h4 { font-size: .78rem; font-family: "Barlow", sans-serif; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); border-bottom: 1px solid var(--line-gold); padding-bottom: 10px; margin-bottom: 12px; }
+  .loadout ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 20px; }
+  .loadout li { display: flex; align-items: center; gap: 12px; font-weight: 500; }
+  .num { width: 26px; height: 26px; border-radius: 50%; flex: none; display: grid; place-items: center; background: var(--gold); color: #14100a; font: 700 .8rem/1 "Chakra Petch", sans-serif; }
+  .num.blue { background: var(--blue); }
 
-  @media (max-width: 760px) {
-    .hero { grid-template-columns: 1fr; text-align: center; }
-    .hero p { margin-left: auto; margin-right: auto; }
-    .mech-art { max-width: 300px; order: -1; }
-    nav ul { display: none; }
+  /* ---------- engineering ---------- */
+  .tech { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .tech article { background: var(--bg); padding: clamp(28px, 4vw, 48px); position: relative; transition: background .3s; }
+  .tech article:hover { background: var(--panel); }
+  .tech .icon { width: 52px; height: 52px; border: 1px solid var(--line-gold); display: grid; place-items: center; margin-bottom: 24px; }
+  .tech .icon svg { width: 28px; height: 28px; }
+  .tech .kicker { color: var(--gold); font-size: .7rem; }
+  .tech h3 { font-size: 1.7rem; margin: 6px 0 14px; }
+  .tech p { color: var(--muted); }
+  .tech ul { list-style: none; margin-top: 18px; display: grid; gap: 8px; }
+  .tech li { padding-left: 20px; position: relative; color: #c3cad1; font-size: .95rem; }
+  .tech li::before { content: "▸"; position: absolute; left: 0; color: var(--gold); }
+  .tech article.blue .kicker, .tech article.blue li::before { color: var(--blue); }
+  .tech article.blue .icon { border-color: rgba(79,195,247,.4); }
+  .tech article.blue h3 em { color: var(--blue); font-style: italic; }
+
+  /* ---------- configurator ---------- */
+  #build { background: var(--bg-2); border-top: 1px solid var(--line); }
+  .builder { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(28px, 5vw, 64px); align-items: start; }
+  .slots { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .slot { background: var(--panel); border: 1px solid var(--line); padding: 18px; }
+  .slot label { display: block; color: var(--dim); font-size: .7rem; margin-bottom: 10px; }
+  .slot select {
+    width: 100%; appearance: none; -webkit-appearance: none;
+    background: var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23e0b14a' stroke-width='2'/%3E%3C/svg%3E") no-repeat right 14px center;
+    color: var(--text); border: 1px solid var(--line); padding: 12px 38px 12px 14px;
+    font: 600 1rem "Barlow", sans-serif; cursor: pointer;
+  }
+  .slot select:focus { outline: none; border-color: var(--gold); }
+  .slot .std { color: var(--gold); font-size: .66rem; margin-top: 8px; display: block; min-height: 1em; }
+  .summary { background: var(--bg); border: 1px solid var(--line-gold); padding: clamp(24px, 3vw, 36px); position: sticky; top: 92px; }
+  .summary h3 { font-size: 1.6rem; margin: 6px 0 4px; }
+  .summary .code { color: var(--blue); font-size: .85rem; word-break: break-all; }
+  .summary dl { margin: 24px 0; display: grid; grid-template-columns: auto 1fr; gap: 10px 18px; border-top: 1px solid var(--line); padding-top: 20px; }
+  .summary dt { color: var(--dim); font-size: .72rem; padding-top: 3px; }
+  .summary dd { font-weight: 600; }
+  .summary .row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .summary .note { color: var(--dim); font-size: .85rem; margin-top: 14px; min-height: 1.4em; }
+
+  /* ---------- attachments ---------- */
+  .attach { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(28px, 5vw, 72px); align-items: start; }
+  .attach .poster { border: 1px solid var(--line); cursor: zoom-in; }
+  .weapons { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .weapons div { background: var(--bg); padding: 18px 20px; }
+  .weapons b { font-family: "Chakra Petch", sans-serif; font-size: 1.05rem; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .weapons span { color: var(--muted); font-size: .92rem; }
+  .chip { font-family: "Share Tech Mono", monospace; font-size: .62rem; letter-spacing: .14em; color: var(--gold); border: 1px solid var(--line-gold); padding: 2px 6px; font-weight: 400; }
+  .standard { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; background: var(--panel); border-left: 3px solid var(--gold); padding: 16px 18px; }
+  .standard .mono { color: var(--gold); margin-right: 8px; font-size: .7rem; }
+  .standard span:not(.mono) { border: 1px solid var(--line); padding: 6px 12px; font-weight: 600; font-size: .9rem; }
+
+  /* ---------- compare ---------- */
+  .table-scroll { overflow-x: auto; border: 1px solid var(--line); }
+  table { width: 100%; border-collapse: collapse; min-width: 860px; }
+  th, td { text-align: left; padding: 16px 18px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: .95rem; }
+  thead th { background: var(--panel); font-family: "Chakra Petch", sans-serif; font-size: 1.05rem; text-transform: uppercase; letter-spacing: .04em; border-top: 3px solid var(--accent, var(--line)); }
+  thead th small { display: block; color: var(--muted); font-family: "Barlow", sans-serif; font-weight: 600; font-size: .75rem; letter-spacing: .1em; }
+  tbody th { color: var(--dim); font-family: "Share Tech Mono", monospace; font-weight: 400; font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; white-space: nowrap; width: 140px; }
+  tbody tr:last-child td, tbody tr:last-child th { border-bottom: 0; }
+  td.gold { color: var(--gold); font-weight: 600; }
+
+  /* ---------- founder ---------- */
+  #founder { position: relative; overflow: hidden; border-top: 1px solid var(--line); }
+  #founder::before {
+    content: ""; position: absolute; inset: 0;
+    background: url("img/um34-gold-crown-card.jpg") center 20% / cover;
+    opacity: .14; filter: grayscale(.4);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 60%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 60%);
+  }
+  .founder { position: relative; display: grid; grid-template-columns: auto 1fr; gap: clamp(32px, 6vw, 88px); align-items: center; }
+  .seal { width: clamp(180px, 22vw, 280px); }
+  .founder h2 { font-size: clamp(2.8rem, 7vw, 5.6rem); }
+  .founder .role { font-family: "Chakra Petch", sans-serif; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin: 12px 0 26px; }
+  .founder blockquote { font-size: clamp(1.15rem, 1.8vw, 1.4rem); line-height: 1.6; color: #d6dce2; max-width: 60ch; border-left: 3px solid var(--gold); padding-left: 24px; }
+  .pillars { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+  .pillars span { border: 1px solid var(--line-gold); color: var(--gold); padding: 8px 14px; }
+  .proto { margin-top: clamp(48px, 7vw, 88px); display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); position: relative; }
+  .proto div { background: rgba(11,13,16,.92); padding: 26px; }
+  .proto b { display: block; font-family: "Chakra Petch", sans-serif; font-size: clamp(2.2rem, 4vw, 3.2rem); color: var(--gold); line-height: 1; margin-bottom: 8px; }
+  .proto span { color: var(--muted); }
+
+  /* ---------- demo ---------- */
+  #demo { background: linear-gradient(180deg, var(--bg-2), var(--bg)); border-top: 1px solid var(--line); text-align: center; }
+  #demo h2 { font-size: clamp(2.2rem, 5vw, 3.6rem); }
+  #demo > .wrap > p { color: var(--muted); margin: 14px 0 44px; font-size: 1.1rem; }
+  .contact { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 980px; margin: 0 auto; }
+  .contact div { border: 1px solid var(--line-gold); padding: 24px; }
+  .contact .mono { color: var(--dim); font-size: .7rem; display: block; margin-bottom: 8px; }
+  .contact b { color: var(--gold); font-size: 1.15rem; font-weight: 600; }
+  .fine { color: var(--dim); font-size: .85rem; margin-top: 36px; }
+
+  footer { border-top: 1px solid var(--line); padding: 32px 0; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: var(--dim); }
+
+  /* ---------- poster viewer ---------- */
+  dialog { border: 0; padding: 0; background: transparent; max-width: min(92vw, 1100px); max-height: 92vh; margin: auto; color: var(--text); }
+  dialog::backdrop { background: rgba(5,6,8,.9); backdrop-filter: blur(4px); }
+  .viewer { display: grid; grid-template-columns: auto 340px; background: var(--panel); border: 1px solid var(--line); max-height: 92vh; }
+  .viewer img { max-height: 92vh; width: auto; }
+  .viewer .info { padding: 32px 28px; overflow-y: auto; display: flex; flex-direction: column; }
+  .viewer h3 { font-size: 2rem; text-transform: uppercase; margin: 8px 0 12px; }
+  .viewer p { color: var(--muted); }
+  .viewer dl { margin: 22px 0; display: grid; gap: 14px; }
+  .viewer dt { color: var(--dim); font-size: .7rem; }
+  .viewer dd { font-weight: 600; }
+  .viewer .close { margin-top: auto; align-self: flex-start; }
+  .x { position: absolute; top: 10px; right: 10px; width: 40px; height: 40px; background: rgba(0,0,0,.6); border: 1px solid var(--line); color: var(--text); font-size: 1.3rem; cursor: pointer; }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  @media (max-width: 1100px) {
+    .range { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .model.flagship-card { grid-column: span 1; }
+  }
+  @media (max-width: 900px) {
+    .nav ul { display: none; }
+    .flagship, .attach, .builder, .founder { grid-template-columns: 1fr; }
+    .range { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .tech { grid-template-columns: 1fr; }
+    .summary { position: static; }
+    .seal { width: 160px; }
+    .viewer { grid-template-columns: 1fr; overflow-y: auto; }
+    .viewer img { max-height: none; width: 100%; }
+  }
+  @media (max-width: 640px) {
+    body { font-size: 16px; }
+    .nav .btn { display: none; }
+    .hero::after { background: linear-gradient(0deg, var(--bg) 8%, rgba(11,13,16,.75) 55%, rgba(11,13,16,.2) 100%); }
+    .hero > img { object-position: 58% 20%; }
+    .spec-strip { grid-template-columns: 1fr 1fr; }
+    .spec-strip div { border-right: 0; margin-right: 0; padding-right: 12px; }
+    .range, .slots, .weapons, .loadout ul, .contact, .proto { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
   }
 </style>
 </head>
 <body>
-  <div class="hazard-strip"></div>
-  <nav>
-    <a class="logo" href="#">ULTRA<span>-MECH</span></a>
-    <ul>
-      <li><a href="#lineup">Mechs</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
 
-  <header class="hero">
-    <div>
-      <div class="tag">Ultra-Mech Industries &middot; Est. 2026</div>
-      <h1>Heavy Metal.<em>Big Ideas.</em></h1>
-      <p>We build the biggest, boldest, most ridiculously awesome mechs on the planet. Built tough, built tall, and built ultra.</p>
-      <a class="btn" href="#lineup">See the lineup</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="logo" viewBox="0 0 40 40">
+      <path d="M20 2 36 11v18L20 38 4 29V11z" fill="none" stroke="#e0b14a" stroke-width="2.4"/>
+      <path d="M12 28V13l8 9 8-9v15" fill="none" stroke="#eef1f4" stroke-width="3" stroke-linejoin="miter"/>
+      <rect x="18.6" y="25" width="2.8" height="5" fill="#e0b14a"/>
+    </symbol>
+    <symbol id="crown" viewBox="0 0 80 52">
+      <path d="M4 40 0 8l20 16L40 0l20 24L80 8l-4 32z" fill="#e0b14a"/>
+      <rect x="4" y="44" width="72" height="8" fill="#e0b14a"/>
+      <circle cx="22" cy="32" r="3.4" fill="#ff6a4d"/><circle cx="40" cy="28" r="3.4" fill="#ff6a4d"/><circle cx="58" cy="32" r="3.4" fill="#ff6a4d"/>
+    </symbol>
+  </defs>
+</svg>
+
+<nav class="nav" id="nav">
+  <a class="brand" href="#top" aria-label="UltraMech Industries home">
+    <svg><use href="#logo"/></svg>
+    <b>ULTRA<span>MECH</span></b>
+  </a>
+  <ul>
+    <li><a href="#models">Models</a></li>
+    <li><a href="#flagship">The 34</a></li>
+    <li><a href="#build">Build</a></li>
+    <li><a href="#attachments">Attachments</a></li>
+    <li><a href="#founder">Founder</a></li>
+  </ul>
+  <a class="btn solid sm" href="#demo">Book a demo</a>
+</nav>
+
+<header class="hero" id="top">
+  <img src="img/hero-um34.jpg" alt="The UltraMech 34 Gold Crown Edition in battle, four arms firing">
+  <div class="wrap">
+    <span class="mono eyebrow">Heavy Assault Class // Quad-Arm Titan</span>
+    <svg class="crown" viewBox="0 0 80 52" aria-hidden="true"><use href="#crown"/></svg>
+    <h1>ULTRAMECH <em>34</em></h1>
+    <div class="edition">GOLD CROWN EDITION</div>
+    <p class="lead">Crowned for combat.</p>
+    <div class="ctas">
+      <a class="btn solid" href="#flagship">Explore the 34 <span class="arr">→</span></a>
+      <a class="btn ghost" href="#build">Build yours</a>
     </div>
+    <div class="spec-strip">
+      <div><span class="mono">Model</span><b>UM-34 GC</b></div>
+      <div><span class="mono">Chassis</span><b>Heavy Assault</b></div>
+      <div><span class="mono">Power plant</span><b>SoulCore BlueSpark</b></div>
+      <div><span class="mono">Hardpoints</span><b>4 Quick-Lock Arms</b></div>
+    </div>
+  </div>
+</header>
 
-    <svg class="mech-art" viewBox="0 0 300 340" aria-label="An Ultra-Mech robot">
-      <g class="bob">
-        <!-- antenna -->
-        <line x1="150" y1="28" x2="150" y2="8" stroke="#9aa7b5" stroke-width="4"/>
-        <circle cx="150" cy="8" r="6" fill="#ff4d1a"/>
-        <!-- head -->
-        <path d="M110 30 h80 l12 22 v28 l-12 14 h-80 l-12 -14 v-28 z" fill="#4a5664" stroke="#0d1014" stroke-width="3"/>
-        <rect class="eye" x="118" y="52" width="64" height="16" rx="3" fill="#33e1ff"/>
-        <!-- shoulders -->
-        <rect x="36" y="100" width="62" height="54" rx="8" fill="#ffb000" stroke="#0d1014" stroke-width="3"/>
-        <rect x="202" y="100" width="62" height="54" rx="8" fill="#ffb000" stroke="#0d1014" stroke-width="3"/>
-        <!-- torso -->
-        <path d="M92 98 h116 l10 30 -14 82 h-108 l-14 -82 z" fill="#222a33" stroke="#0d1014" stroke-width="3"/>
-        <path d="M108 112 h84 l-6 46 h-72 z" fill="#4a5664"/>
-        <circle cx="150" cy="134" r="14" fill="#33e1ff" opacity=".9"/>
-        <circle cx="150" cy="134" r="6" fill="#e8edf2"/>
-        <rect x="112" y="172" width="76" height="10" fill="#ffb000"/>
-        <rect x="112" y="188" width="76" height="6" fill="#4a5664"/>
-        <!-- arms -->
-        <rect x="44" y="154" width="44" height="80" rx="6" fill="#4a5664" stroke="#0d1014" stroke-width="3"/>
-        <rect x="212" y="154" width="44" height="80" rx="6" fill="#4a5664" stroke="#0d1014" stroke-width="3"/>
-        <rect x="38" y="232" width="56" height="30" rx="6" fill="#222a33" stroke="#0d1014" stroke-width="3"/>
-        <rect x="206" y="232" width="56" height="30" rx="6" fill="#222a33" stroke="#0d1014" stroke-width="3"/>
-      </g>
-      <!-- legs -->
-      <rect x="104" y="210" width="38" height="92" fill="#4a5664" stroke="#0d1014" stroke-width="3"/>
-      <rect x="158" y="210" width="38" height="92" fill="#4a5664" stroke="#0d1014" stroke-width="3"/>
-      <rect x="104" y="240" width="38" height="10" fill="#ffb000"/>
-      <rect x="158" y="240" width="38" height="10" fill="#ffb000"/>
-      <path d="M90 300 h62 v26 h-70 z" fill="#222a33" stroke="#0d1014" stroke-width="3"/>
-      <path d="M148 300 h62 l8 26 h-70 z" fill="#222a33" stroke="#0d1014" stroke-width="3"/>
-    </svg>
-  </header>
+<section id="models">
+  <div class="wrap">
+    <div class="head reveal">
+      <div>
+        <span class="mono eyebrow">Five frames. One standard.</span>
+        <h2>The fleet lineup.</h2>
+      </div>
+      <p>Choose the chassis for your theatre of operations. Select any model for the full spec sheet.</p>
+    </div>
+    <div class="tabs reveal" role="group" aria-label="Filter models">
+      <button class="tab" aria-pressed="true" data-f="all">All models</button>
+      <button class="tab" aria-pressed="false" data-f="light">Light &amp; Recon</button>
+      <button class="tab" aria-pressed="false" data-f="heavy">Heavy &amp; Titan</button>
+    </div>
+    <div class="range" id="range"></div>
+  </div>
+</section>
 
-  <div class="hazard-strip"></div>
-
-  <section class="lineup" id="lineup">
-    <div class="wrap">
-      <h2 class="section-title">The Lineup</h2>
-      <p class="section-sub">Every Ultra-Mech is hand-built, battle-tested and way too big for your garage.</p>
-      <div class="grid">
-        <article class="card" style="--accent: #ffb000;">
-          <div class="model">MODEL UM-1</div>
-          <h3>Titan</h3>
-          <p>Our flagship heavy mech. Slow, unstoppable and taller than a three-story building.</p>
-          <div class="stat">Armor <div class="bar"><i style="width:95%"></i></div></div>
-          <div class="stat">Speed <div class="bar"><i style="width:35%"></i></div></div>
-          <div class="stat">Power <div class="bar"><i style="width:90%"></i></div></div>
-        </article>
-        <article class="card" style="--accent: #33e1ff;">
-          <div class="model">MODEL UM-2</div>
-          <h3>Viper</h3>
-          <p>A lightning-fast scout with jump jets. Blink and you'll miss it.</p>
-          <div class="stat">Armor <div class="bar"><i style="width:40%"></i></div></div>
-          <div class="stat">Speed <div class="bar"><i style="width:98%"></i></div></div>
-          <div class="stat">Power <div class="bar"><i style="width:55%"></i></div></div>
-        </article>
-        <article class="card" style="--accent: #ff4d1a;">
-          <div class="model">MODEL UM-3</div>
-          <h3>Inferno</h3>
-          <p>Rocket boosters, plasma fists and a cockpit with cup holders. The fan favorite.</p>
-          <div class="stat">Armor <div class="bar"><i style="width:70%"></i></div></div>
-          <div class="stat">Speed <div class="bar"><i style="width:65%"></i></div></div>
-          <div class="stat">Power <div class="bar"><i style="width:85%"></i></div></div>
-        </article>
+<section id="flagship">
+  <div class="wrap flagship">
+    <img class="poster reveal" src="img/um34-gold-crown-poster.jpg" alt="UltraMech 34 Gold Crown Edition spec poster" data-model="um34">
+    <div class="reveal">
+      <span class="mono eyebrow">Factory loadout // UM-34 GC Config A</span>
+      <h2>Built to rule the field.</h2>
+      <div class="tagline">FOUR ARMS. <b>ZERO COMPROMISES.</b></div>
+      <p>Every UltraMech starts with a frame that never quits. The Gold Crown edition adds a signature finish and a four-arm factory loadout, ready for anything the front line throws at it.</p>
+      <div class="loadout">
+        <div>
+          <h4>Upper arm linkage</h4>
+          <ul><li><span class="num">1</span>Mini Gun</li><li><span class="num">2</span>Flamethrower</li></ul>
+        </div>
+        <div>
+          <h4>Bottom arms</h4>
+          <ul><li><span class="num">3</span>Obsidian Fist</li><li><span class="num">4</span>Arm Cannon</li><li><span class="num">5</span>Scorpion Spike</li></ul>
+        </div>
+        <div>
+          <h4>Core systems</h4>
+          <ul><li><span class="num">6</span>Gold Crown Styling</li><li><span class="num">7</span>Heavy-Duty Armor</li><li><span class="num blue">8</span>SoulCore BlueSpark</li></ul>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="about">
-    <div class="wrap">
-      <h2 class="section-title">About Ultra-Mech</h2>
-      <p class="section-sub">Founded in 2026 by a father-and-son engineering team with one goal: make mechs more ultra.</p>
-      <div class="about-grid">
-        <div class="fact"><b>3</b><span>Mech models in production</span></div>
-        <div class="fact"><b>40 ft</b><span>Tallest mech we've built (so far)</span></div>
-        <div class="fact"><b>100%</b><span>Awesomeness guaranteed</span></div>
+<section id="engineering">
+  <div class="wrap">
+    <div class="head reveal">
+      <div>
+        <span class="mono eyebrow">Advanced engineering &amp; options</span>
+        <h2>What's under the crown.</h2>
+      </div>
+      <p>The core innovations and tactical upgrades that make the UM-34 chassis the most capable frame UltraMech has ever fielded.</p>
+    </div>
+    <div class="tech reveal">
+      <article class="blue">
+        <div class="icon"><svg viewBox="0 0 28 28" fill="none" stroke="#4fc3f7" stroke-width="1.8"><circle cx="14" cy="14" r="11"/><path d="M15.5 6 9 15.5h5l-1.5 6.5 6.5-9.5h-5z" fill="#4fc3f7" stroke="none"/></svg></div>
+        <span class="mono kicker">Central power integration</span>
+        <h3>SoulCore <em>BlueSpark</em></h3>
+        <p>Seated in the center of the chest behind reinforced crystal plating, the SoulCore turns dense core energy into instant motor torque and high-voltage weapon output.</p>
+        <ul><li>Mounted at the center of mass for stability under heavy impacts.</li><li>The blue spark glows through armor seams: live core telemetry at a glance.</li></ul>
+      </article>
+      <article>
+        <div class="icon"><svg viewBox="0 0 28 28" fill="none" stroke="#e0b14a" stroke-width="1.8"><circle cx="6" cy="22" r="2.5"/><circle cx="14" cy="12" r="2.5"/><circle cx="22" cy="6" r="2.5"/><path d="M7.6 20 12.4 14M16 10.6l4-3"/></svg></div>
+        <span class="mono kicker">Premium factory option</span>
+        <h3>Dual Upper Arm Linkage</h3>
+        <p>Turns a two-arm chassis into a quad-weapon platform. Hydraulic servos give the upper mounts independent targeting while weight stays balanced over the hip drive.</p>
+        <ul><li>360° fire arc without fouling the lower arms.</li><li>Rated for high-recoil weapons like the Mini Gun and Giant Crossbow, at once.</li></ul>
+      </article>
+      <article>
+        <div class="icon"><svg viewBox="0 0 80 52" style="width:30px"><use href="#crown"/></svg></div>
+        <span class="mono kicker">Gold Crown exclusive</span>
+        <h3>Gold Crown Command Crest</h3>
+        <p>The signature three-spike crest atop the helmet is both a high-status command emblem and a long-range battlefield sensor array.</p>
+        <ul><li>Twin amber beacons for squad recognition through smoke and fog.</li><li>Command-node optics relay targeting data to friendly units in real time.</li></ul>
+      </article>
+      <article>
+        <div class="icon"><svg viewBox="0 0 28 28" fill="none" stroke="#e0b14a" stroke-width="1.8"><path d="M14 3 23 6.5v7c0 6-4 9.5-9 11.5-5-2-9-5.5-9-11.5v-7z"/><path d="M14 9v10M10 13h8"/></svg></div>
+        <span class="mono kicker">Obsidian composite</span>
+        <h3>Heavy-Duty Armor</h3>
+        <p>Layered obsidian plating over a reinforced spine frame, built to take the hits a frontline titan draws.</p>
+        <ul><li>Sloped shoulder guards deflect direct fire.</li><li>Reinforced spine carries all four arms under full recoil.</li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="build">
+  <div class="wrap">
+    <div class="head reveal">
+      <div>
+        <span class="mono eyebrow">Configurator // UM-34 GC</span>
+        <h2>Build your 34.</h2>
+      </div>
+      <p>Four Quick-Lock hardpoints. Pick a weapon for each arm and we'll prepare your build sheet for the hangar.</p>
+    </div>
+    <div class="builder reveal">
+      <div class="slots" id="slots"></div>
+      <aside class="summary">
+        <span class="mono eyebrow">Your build</span>
+        <h3>UltraMech 34 Gold Crown</h3>
+        <div class="mono code" id="buildCode"></div>
+        <dl id="buildList"></dl>
+        <div class="row">
+          <button class="btn solid sm" id="share">Copy build link</button>
+          <button class="btn ghost sm" id="reset">Factory loadout</button>
+        </div>
+        <div class="note" id="note"></div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section id="attachments">
+  <div class="wrap">
+    <div class="head reveal">
+      <div>
+        <span class="mono eyebrow">Ten weapons. One hardpoint.</span>
+        <h2>Swap. Strike. Repeat.</h2>
+      </div>
+      <p>Every attachment locks onto any UltraMech arm mount in seconds.</p>
+    </div>
+    <div class="attach">
+      <img class="poster reveal" src="img/attachments-poster.jpg" alt="UM-34 GC attachment catalog poster showing all ten weapons" data-model="attachments">
+      <div class="reveal">
+        <div class="weapons" id="weapons"></div>
+        <div class="standard">
+          <span class="mono">Standard on the 34 GC</span>
+          <span>Mini Gun</span><span>Flamethrower</span><span>Obsidian Fist</span><span>Arm Cannon</span><span>Scorpion Spike</span>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <div class="hazard-strip"></div>
-
-  <section class="contact" id="contact">
-    <div class="wrap">
-      <h2 class="section-title">Order Your Mech</h2>
-      <p>Our engineers are standing by. Production slots are limited and the waiting list is huge.</p>
-      <a class="btn" href="#">Coming soon</a>
+<section id="compare">
+  <div class="wrap">
+    <div class="head reveal">
+      <div>
+        <span class="mono eyebrow">Fleet selection guide // 2026/27</span>
+        <h2>Compare models.</h2>
+      </div>
     </div>
-  </section>
+    <div class="table-scroll reveal">
+      <table id="compareTable"></table>
+    </div>
+  </div>
+</section>
 
-  <footer>&copy; <span id="yr">2026</span> Ultra-Mech Industries. All mechs are fictional. Probably.</footer>
-  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+<section id="founder">
+  <div class="wrap">
+    <div class="founder reveal">
+      <svg class="seal" viewBox="0 0 200 220" aria-hidden="true">
+        <path d="M100 6 190 58v104L100 214 10 162V58z" fill="#111418" stroke="#e0b14a" stroke-width="3"/>
+        <path d="M100 22 176 66v88L100 198 24 154V66z" fill="none" stroke="#5c4a1e" stroke-width="1.5"/>
+        <use href="#crown" x="66" y="44" width="68" height="44"/>
+        <text x="100" y="140" text-anchor="middle" font-family="Chakra Petch, sans-serif" font-weight="700" font-size="54" fill="#eef1f4" letter-spacing="2">XS</text>
+        <text x="100" y="170" text-anchor="middle" font-family="Share Tech Mono, monospace" font-size="11" fill="#e0b14a" letter-spacing="4">FOUNDER</text>
+      </svg>
+      <div>
+        <span class="mono eyebrow">Meet the founder</span>
+        <h2>Xavier Sharp</h2>
+        <div class="role">Chief Robot Engineer &amp; CEO</div>
+        <blockquote>Xavier Sharp founded UltraMech Industries and leads it as both Chief Robot Engineer and CEO. He designed and hand-built the original UM-34 prototype himself. He is famous for an innovative design approach built for maximum utility, pairing world-class engineering with unmistakable style: the standard behind every UltraMech.</blockquote>
+        <div class="pillars mono"><span>Maximum utility</span><span>World-class engineering</span><span>Signature style</span></div>
+      </div>
+    </div>
+    <div class="proto reveal">
+      <div><b>P0</b><span>Prototype UM-34-P0, designed and hand-built by the founder on the workbench.</span></div>
+      <div><b>3 + 4</b><span>Its three-spike crest and four-arm layout set the pattern for the entire line.</span></div>
+      <div><b>= 34</b><span>Three spikes, four arms. That's where the UM-34 got its name.</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="demo">
+  <div class="wrap reveal">
+    <span class="mono eyebrow">Engineered for the front line</span>
+    <h2>Schedule a live field demonstration.</h2>
+    <p>See the UM-34 Gold Crown in action at the UltraMech hangar.</p>
+    <div class="contact">
+      <div><span class="mono">Online</span><b>ultra-mech.com</b></div>
+      <div><span class="mono">Call</span><b>1-800-ULTRAMECH</b></div>
+      <div><span class="mono">Visit the hangar</span><b>Hangar 34, Proving Grounds</b></div>
+    </div>
+    <p class="fine">Attachments sold separately. Pilot certification required for UM-34 GC class operation. Pilot not included.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#top"><svg><use href="#logo"/></svg><b>ULTRA<span>MECH</span> INDUSTRIES</b></a>
+    <span class="mono">© <span id="yr">2026</span> · Crowned for combat</span>
+  </div>
+</footer>
+
+<dialog id="viewer">
+  <div class="viewer">
+    <img id="vImg" alt="">
+    <div class="info">
+      <span class="mono eyebrow" id="vCls"></span>
+      <h3 id="vName"></h3>
+      <p id="vDesc"></p>
+      <dl id="vSpecs"></dl>
+      <button class="btn ghost sm close" id="vClose">Close</button>
+    </div>
+  </div>
+  <button class="x" id="vX" aria-label="Close">×</button>
+</dialog>
+
+<script>
+  var MODELS = [
+    { id: "um34", code: "UM-34", name: "Gold Crown", cls: "Heavy Assault // Quad-Arm Titan", group: "heavy", accent: "#e0b14a", flagship: true,
+      desc: "The pinnacle of frontline supremacy. Obsidian composite armor, quad-arm articulators and the full SoulCore BlueSpark chest assembly.",
+      specs: { Class: "Heavy Assault", Role: "Vanguard Assault", Armor: "Obsidian composite", Weapons: "4 Quick-Lock Arms", Signature: "Gold Crown Command Crest", Power: "SoulCore BlueSpark" } },
+    { id: "um12", code: "UM-12", name: "Velox", cls: "High-Speed Recon", group: "light", accent: "#f0a43a",
+      desc: "Light scout with rear thrusters, agile digitigrade legs and a compact rapid-fire SMG.",
+      specs: { Class: "Light Scout", Role: "High-speed recon", Armor: "Light composite", Weapons: "Compact rapid-fire SMG", Signature: "Rear thrusters", Speed: "Maximum" } },
+    { id: "um18", code: "UM-18", name: "Sentinel", cls: "Long-Range Sniper", group: "light", accent: "#4fc3f7",
+      desc: "Sees first, strikes first. Advanced optics, active stealth plating and a precision cannon.",
+      specs: { Class: "Recon / Sniper", Role: "Long-range overwatch", Armor: "Active stealth plating", Weapons: "High-caliber precision cannon", Signature: "Advanced optics sensor crest", Power: "SoulCore BlueSpark", Range: "Extreme" } },
+    { id: "um22", code: "UM-22", name: "Barricade", cls: "Heavy Siege Defender", group: "heavy", accent: "#e8873a",
+      desc: "Deflector-matrix tower shield, twin-link siege cannon and anchor hydraulics for siege mode.",
+      specs: { Class: "Heavy Defensive", Role: "Siege defense", Armor: "Ultra-heavy plating", Weapons: "Twin-link siege cannon", Signature: "Deflector-matrix tower shield", Shield: "Deflector matrix" } },
+    { id: "um40", code: "UM-40", name: "Dreadnought", cls: "Ultra-Heavy Titan", group: "heavy", accent: "#ff6a4d",
+      desc: "Super-heavy shoulder artillery, a rotary cannon arm and an oversized SoulCore.",
+      specs: { Class: "Ultra-Heavy Titan", Role: "Artillery support", Armor: "Multi-layer composite", Weapons: "Shoulder artillery + rotary cannon", Signature: "Hydraulic anchors", Power: "Oversized SoulCore", Firepower: "Artillery grade" } }
+  ];
+  var FILES = { um34: "um34-gold-crown", um12: "um12-velox", um18: "um18-sentinel", um22: "um22-barricade", um40: "um40-dreadnought" };
+
+  var WEAPONS = [
+    { n: "Giant Crossbow", d: "Siege-scale launcher for heavy bolts." },
+    { n: "Rotary Breaching Blade", d: "Cuts hull plate like paper." },
+    { n: "Whip", d: "Segmented chain lash for long-reach sweeping strikes." },
+    { n: "Hand", d: "Five-finger manipulator for grabbing and precision work." },
+    { n: "Spear", d: "Long-reach thrusting point." },
+    { n: "Elemental Crystal Cannon", d: "Channels fire, ice or storm." },
+    { n: "Lance", d: "Charge-rated lance for full-speed attacks." },
+    { n: "Sword", d: "Forged edge balanced for close-quarters duels." },
+    { n: "Drill", d: "Hardened auger for tunneling." },
+    { n: "Arm Cannon", d: "High-impact projectile launcher for frontline siege tasks.", std: true }
+  ];
+  var STANDARD = ["Mini Gun", "Flamethrower", "Obsidian Fist", "Arm Cannon", "Scorpion Spike"];
+  var ALL_WEAPONS = STANDARD.concat(WEAPONS.map(function (w) { return w.n; }).filter(function (n) { return STANDARD.indexOf(n) < 0; }));
+  var SLOTS = [
+    { k: "ul", label: "Upper left arm", def: "Flamethrower" },
+    { k: "ur", label: "Upper right arm", def: "Mini Gun" },
+    { k: "ll", label: "Bottom left arm", def: "Obsidian Fist" },
+    { k: "lr", label: "Bottom right arm", def: "Arm Cannon" }
+  ];
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+
+  // model range
+  document.getElementById("range").innerHTML = MODELS.map(function (m) {
+    return '<button class="model reveal" data-model="' + m.id + '" data-group="' + m.group + '" style="--accent:' + m.accent + '">' +
+      (m.flagship ? '<span class="flag mono">Flagship</span>' : '') +
+      '<div class="pic"><img loading="lazy" src="img/' + FILES[m.id] + '-card.jpg" alt="' + esc(m.code + ' ' + m.name) + '"></div>' +
+      '<div class="body"><span class="mono cls">' + esc(m.cls) + '</span><span class="code">' + m.code + '</span><h3>' + esc(m.name) + '</h3>' +
+      '<p>' + esc(m.desc) + '</p><span class="more">Spec sheet <span>→</span></span></div></button>';
+  }).join("");
+
+  document.querySelectorAll(".tab").forEach(function (t) {
+    t.addEventListener("click", function () {
+      document.querySelectorAll(".tab").forEach(function (o) { o.setAttribute("aria-pressed", o === t); });
+      var f = t.dataset.f;
+      document.querySelectorAll(".model").forEach(function (m) { m.classList.toggle("hide", f !== "all" && m.dataset.group !== f); });
+    });
+  });
+
+  // compare table
+  (function () {
+    var rows = ["Class", "Role", "Armor", "Weapons", "Signature", "Power"];
+    var h = '<thead><tr><th style="background:var(--bg)"></th>' + MODELS.map(function (m) {
+      return '<th style="--accent:' + m.accent + '"><small>' + m.code + '</small>' + esc(m.name) + '</th>';
+    }).join("") + '</tr></thead><tbody>';
+    rows.forEach(function (r) {
+      h += '<tr><th>' + r + '</th>' + MODELS.map(function (m) {
+        return '<td' + (m.flagship ? ' class="gold"' : '') + '>' + esc(m.specs[r] || "—") + '</td>';
+      }).join("") + '</tr>';
+    });
+    document.getElementById("compareTable").innerHTML = h + '</tbody>';
+  })();
+
+  // attachments list
+  document.getElementById("weapons").innerHTML = WEAPONS.map(function (w) {
+    return '<div><b>' + esc(w.n) + (w.std ? ' <span class="chip">STANDARD</span>' : '') + '</b><span>' + esc(w.d) + '</span></div>';
+  }).join("");
+
+  // configurator
+  var slotsEl = document.getElementById("slots");
+  slotsEl.innerHTML = SLOTS.map(function (s) {
+    return '<div class="slot"><label class="mono" for="s-' + s.k + '">' + s.label + '</label><select id="s-' + s.k + '">' +
+      ALL_WEAPONS.map(function (w) { return '<option>' + esc(w) + '</option>'; }).join("") +
+      '</select><span class="mono std"></span></div>';
+  }).join("");
+
+  function abbr(w) { return w.split(/\s+/).map(function (p) { return p[0]; }).join("").toUpperCase(); }
+  function renderBuild() {
+    var picks = SLOTS.map(function (s) { return document.getElementById("s-" + s.k).value; });
+    document.getElementById("buildCode").textContent = "UM-34 GC // " + picks.map(abbr).join("-");
+    document.getElementById("buildList").innerHTML = SLOTS.map(function (s, i) {
+      return '<dt class="mono">' + s.label.replace(" arm", "") + '</dt><dd>' + esc(picks[i]) + '</dd>';
+    }).join("") + '<dt class="mono">Core</dt><dd>SoulCore BlueSpark</dd><dt class="mono">Finish</dt><dd>Gold Crown</dd>';
+    document.querySelectorAll(".slot").forEach(function (el, i) {
+      el.querySelector(".std").textContent = STANDARD.indexOf(picks[i]) >= 0 ? "Standard equipment" : "Sold separately";
+    });
+    try { history.replaceState(null, "", "#build=" + picks.map(function (p) { return ALL_WEAPONS.indexOf(p); }).join(".")); } catch (e) {}
+  }
+  function setBuild(picks) {
+    SLOTS.forEach(function (s, i) { document.getElementById("s-" + s.k).value = picks[i] || s.def; });
+    renderBuild();
+  }
+  slotsEl.addEventListener("change", renderBuild);
+  document.getElementById("reset").addEventListener("click", function () { setBuild([]); });
+  document.getElementById("share").addEventListener("click", function () {
+    var note = document.getElementById("note");
+    var url = location.href;
+    function done(ok) { note.textContent = ok ? "Build link copied. Send it to your squad." : "Copy this link: " + url; }
+    if (navigator.clipboard) navigator.clipboard.writeText(url).then(function () { done(true); }, function () { done(false); });
+    else done(false);
+  });
+  (function () {
+    var m = /#build=([\d.]+)/.exec(location.hash);
+    var picks = m ? m[1].split(".").map(function (i) { return ALL_WEAPONS[+i]; }) : [];
+    SLOTS.forEach(function (s, i) { document.getElementById("s-" + s.k).value = picks[i] || s.def; });
+    if (m) {
+      renderBuild();
+      setTimeout(function () { document.getElementById("build").scrollIntoView(); }, 50);
+    } else {
+      // render without touching the URL on first load
+      var save = history.replaceState; history.replaceState = function () {}; renderBuild(); history.replaceState = save;
+    }
+  })();
+
+  // poster viewer
+  var dlg = document.getElementById("viewer");
+  function openModel(id) {
+    var img = document.getElementById("vImg");
+    if (id === "attachments") {
+      img.src = "img/attachments-poster.jpg"; img.alt = "Attachment catalog";
+      document.getElementById("vCls").textContent = "Modular weaponry // Hardpoint matrix";
+      document.getElementById("vName").textContent = "Attachment Catalog";
+      document.getElementById("vDesc").textContent = "Every attachment locks onto any UltraMech arm mount in seconds. Attachments sold separately.";
+      document.getElementById("vSpecs").innerHTML = "";
+    } else {
+      var m = MODELS.filter(function (x) { return x.id === id; })[0];
+      img.src = "img/" + FILES[id] + "-poster.jpg"; img.alt = m.code + " " + m.name + " spec poster";
+      document.getElementById("vCls").textContent = m.cls;
+      document.getElementById("vName").textContent = m.code + " " + m.name;
+      document.getElementById("vDesc").textContent = m.desc;
+      document.getElementById("vSpecs").innerHTML = Object.keys(m.specs).map(function (k) {
+        return '<div><dt class="mono">' + k + '</dt><dd>' + esc(m.specs[k]) + '</dd></div>';
+      }).join("");
+    }
+    if (dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", "");
+  }
+  function closeModel() { if (dlg.close) dlg.close(); else dlg.removeAttribute("open"); }
+  document.addEventListener("click", function (e) {
+    var t = e.target.closest("[data-model]");
+    if (t) openModel(t.dataset.model);
+  });
+  document.getElementById("vClose").addEventListener("click", closeModel);
+  document.getElementById("vX").addEventListener("click", closeModel);
+  dlg.addEventListener("click", function (e) { if (e.target === dlg) closeModel(); });
+
+  // nav + reveal
+  var nav = document.getElementById("nav");
+  function onScroll() { nav.classList.toggle("solid", scrollY > 40); }
+  addEventListener("scroll", onScroll, { passive: true }); onScroll();
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
+    }, { threshold: .12 });
+    document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+  } else {
+    document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("in"); });
+  }
+  document.getElementById("yr").textContent = new Date().getFullYear();
+</script>
 </body>
 </html>

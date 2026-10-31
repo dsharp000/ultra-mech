@@ -230,10 +230,17 @@
   .founder blockquote { font-size: clamp(1.15rem, 1.8vw, 1.4rem); line-height: 1.6; color: #d6dce2; max-width: 60ch; border-left: 3px solid var(--gold); padding-left: 24px; }
   .pillars { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
   .pillars span { border: 1px solid var(--line-gold); color: var(--gold); padding: 8px 14px; }
-  .proto { margin-top: clamp(48px, 7vw, 88px); display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); position: relative; }
-  .proto div { background: rgba(11,13,16,.92); padding: 26px; }
-  .proto b { display: block; font-family: "Chakra Petch", sans-serif; font-size: clamp(2.2rem, 4vw, 3.2rem); color: var(--gold); line-height: 1; margin-bottom: 8px; }
-  .proto span { color: var(--muted); }
+  .bench { margin-top: clamp(56px, 8vw, 100px); position: relative; display: grid; grid-template-columns: .9fr 1.1fr; background: rgba(17,20,24,.94); border: 1px solid var(--line); border-top: 3px solid var(--gold); }
+  .bench figure { position: relative; cursor: zoom-in; overflow: hidden; }
+  .bench figure img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1; transition: transform .6s; }
+  .bench figure:hover img { transform: scale(1.04); }
+  .bench figcaption { position: absolute; left: 14px; bottom: 14px; background: rgba(11,13,16,.85); border: 1px solid var(--line); padding: 6px 12px; font-size: .68rem; color: var(--muted); }
+  .bench .txt { padding: clamp(28px, 4vw, 56px); display: flex; flex-direction: column; justify-content: center; }
+  .bench h3 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 16px; }
+  .bench p { color: var(--muted); font-size: 1.08rem; max-width: 46ch; }
+  .formula { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+  .formula span { border: 1px solid var(--line-gold); color: var(--gold); padding: 10px 16px; }
+  .formula span.eq { background: var(--gold); color: #14100a; border-color: var(--gold); }
 
   /* ---------- demo ---------- */
   #demo { background: linear-gradient(180deg, var(--bg-2), var(--bg)); border-top: 1px solid var(--line); text-align: center; }
@@ -271,7 +278,7 @@
   }
   @media (max-width: 900px) {
     .nav ul { display: none; }
-    .flagship, .attach, .builder, .founder { grid-template-columns: 1fr; }
+    .flagship, .attach, .builder, .founder, .bench { grid-template-columns: 1fr; }
     .range { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .tech { grid-template-columns: 1fr; }
     .summary { position: static; }
@@ -286,7 +293,7 @@
     .hero > img { object-position: 58% 20%; }
     .spec-strip { grid-template-columns: 1fr 1fr; }
     .spec-strip div { border-right: 0; margin-right: 0; padding-right: 12px; }
-    .range, .slots, .weapons, .loadout ul, .contact, .proto { grid-template-columns: 1fr; }
+    .range, .slots, .weapons, .loadout ul, .contact { grid-template-columns: 1fr; }
   }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -513,10 +520,17 @@
         <div class="pillars mono"><span>Maximum utility</span><span>World-class engineering</span><span>Signature style</span></div>
       </div>
     </div>
-    <div class="proto reveal">
-      <div><b>P0</b><span>Prototype UM-34-P0, designed and hand-built by the founder on the workbench.</span></div>
-      <div><b>3 + 4</b><span>Its three-spike crest and four-arm layout set the pattern for the entire line.</span></div>
-      <div><b>= 34</b><span>Three spikes, four arms. That's where the UM-34 got its name.</span></div>
+    <div class="bench reveal">
+      <figure data-model="p0">
+        <img loading="lazy" src="img/um34-p0-prototype.jpg" alt="Prototype UM-34-P0: a hand-built four-arm mech with a gold three-spike crest">
+        <figcaption class="mono">Workbench photo // UM-34-P0</figcaption>
+      </figure>
+      <div class="txt">
+        <span class="mono eyebrow">From the workbench</span>
+        <h3>Prototype UM-34-P0</h3>
+        <p>Designed and hand-built by founder Xavier Sharp. Its three-spike crest and four-arm layout set the pattern for the entire UM-34 line, right down to the Mini Gun, Obsidian Fist and Scorpion Spike that still ship on every Gold Crown.</p>
+        <div class="formula mono"><span>3 Spikes</span><span>4 Arms</span><span class="eq">= UM-34</span></div>
+      </div>
     </div>
   </div>
 </section>
@@ -685,7 +699,13 @@
   var dlg = document.getElementById("viewer");
   function openModel(id) {
     var img = document.getElementById("vImg");
-    if (id === "attachments") {
+    if (id === "p0") {
+      img.src = "img/um34-p0-prototype.jpg"; img.alt = "Prototype UM-34-P0";
+      document.getElementById("vCls").textContent = "From the workbench";
+      document.getElementById("vName").textContent = "UM-34-P0 Prototype";
+      document.getElementById("vDesc").textContent = "Designed and hand-built by founder Xavier Sharp. The original that started the UM-34 line.";
+      document.getElementById("vSpecs").innerHTML = '<div><dt class="mono">Spikes</dt><dd>3</dd></div><div><dt class="mono">Arms</dt><dd>4</dd></div><div><dt class="mono">Builder</dt><dd>Xavier Sharp</dd></div>';
+    } else if (id === "attachments") {
       img.src = "img/attachments-poster.jpg"; img.alt = "Attachment catalog";
       document.getElementById("vCls").textContent = "Modular weaponry // Hardpoint matrix";
       document.getElementById("vName").textContent = "Attachment Catalog";
